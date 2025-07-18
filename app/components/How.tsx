@@ -7,7 +7,7 @@ export default function How() {
     return (
         <div className='w-full py-16 flex justify-center items-center'>
             <div className="max-w-4xl w-full flex flex-col items-center gap-5">
-                <h2 className='relative text-xl font-bold pb-2 mb-8 before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-1/2 before:h-1 before:border-b-4 before:border-[var(--primary)]'>How it works</h2>
+                <h2 className='relative text-2xl font-black pb-3 mb-8 before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-1/2 before:h-2 before:bg-[var(--primary)] before:rounded-full'>How it works</h2>
                 <div className='relative w-full flex items-center gap-8'>
                     <div className="w-full absolute top-8 left-1/2 -translate-x-1/2 flex items-center justify-between gap-36 px-[157px]">
                         <div className="flex-1 h-[1px] bg-gray-400"></div>
