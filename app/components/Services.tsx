@@ -29,7 +29,7 @@ export default function Services() {
     ];
 
     return (
-        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div id='services' className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
             {/* Header */}
             <div className="flex flex-col items-center text-center mb-16">
                 <h2 className='relative w-fit text-2xl font-black pb-3 mb-8 before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-1/2 before:h-2 before:bg-[var(--primary)] before:rounded-full'>Our Services</h2>

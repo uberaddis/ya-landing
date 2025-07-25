@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function About() {
     return (
-        <div className='w-full py-16 flex items-center gap-10 bg-[#02bf6322]'>
+        <div id='about' className='w-full py-16 flex items-center gap-10 bg-[#02bf6322]'>
             <div className="flex-1 flex justify-end">
                 <div className="max-w-md flex flex-col gap-10">
                     <h2 className='relative w-fit text-xl font-bold pb-3 before:absolute before:bottom-0 before:w-1/2 before:h-2 before:bg-[var(--primary)] before:rounded-full'>About us</h2>

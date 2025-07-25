@@ -36,9 +36,9 @@ export default function Navbar() {
                     <div className="flex w-5 h-full"></div>
                     <div className="flex items-center gap-6 py-4">
                         <Link href="#" className={`relative text-sm before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setActiveLink("")}>Home</Link>
-                        <Link href="#" className={`relative text-sm before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "about" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setActiveLink("about")}>About</Link>
-                        <Link href="#" className={`relative text-sm before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "services" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setActiveLink("services")}>Services</Link>
-                        <Link href="#" className={`relative text-sm before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "contact" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setActiveLink("contact")}>Contact</Link>
+                        <Link href="#about" className={`relative text-sm before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "about" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setActiveLink("about")}>About</Link>
+                        <Link href="#services" className={`relative text-sm before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "services" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setActiveLink("services")}>Services</Link>
+                        <Link href="#contact" className={`relative text-sm before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "contact" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setActiveLink("contact")}>Contact</Link>
                     </div>
                     <div className="flex flex-col items-center">
                         <div className="bg-[var(--foreground)] text-[var(--background)] text-[12px] w-32 flex justify-center py-[7.35px]">

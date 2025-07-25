@@ -38,7 +38,7 @@ export default function ContactForm() {
     };
 
     return (
-        <div className="w-full pt-16 px-5 md:px-[120px] mb-10 flex flex-col items-center">
+        <div id="contact" className="w-full pt-16 px-5 md:px-[120px] mb-10 flex flex-col items-center">
             <h2 className='relative w-fit text-2xl font-black pb-3 mb-14 before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-1/2 before:h-2 before:bg-[var(--primary)] before:rounded-full'>Get In Touch</h2>
             <form
                 onSubmit={handleSubmit}
