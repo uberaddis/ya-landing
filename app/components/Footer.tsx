@@ -193,7 +193,7 @@ export default function Footer() {
 
                         <div className="text-center lg:text-right">
                             <p className="text-gray-400">
-                                © 2025 RideFlow. All rights reserved.
+                                © 2025 Ya-ride. All rights reserved.
                             </p>
                         </div>
                     </div>
