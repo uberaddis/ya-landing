@@ -26,7 +26,7 @@ export default function Testimonials() {
                 <Image src="/images/ya_test_bg.jpg" alt="Testimonials Background" width={2880} height={1600} className="object-cover w-full h-full" />
             </div>
             <div className="relative max-w-4xl w-full flex flex-col items-center">
-                <h2 className='relative text-white text-2xl font-black pb-3 mb-8 before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-1/2 before:h-2 before:bg-[var(--primary)] before:rounded-full'>What Our Customers Say</h2>
+                <h2 className='relative text-white text-2xl text-center font-black pb-3 mb-8 before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-1/2 before:h-2 before:bg-[var(--primary)] before:rounded-full'>What Our Customers Say</h2>
                 <div className='w-full overflow-hidden'>
                     <div className={`flex items-center transition-transform duration-300 ease-in-out`} style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                         {arr.map((_: number, index: number) => (
