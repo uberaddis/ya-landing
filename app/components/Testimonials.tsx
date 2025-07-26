@@ -15,7 +15,7 @@ export default function Testimonials() {
             }
         }, 5000);
 
-        console.log("Current Index:", currentIndex);
+        // console.log("Current Index:", currentIndex);
 
         return () => clearInterval(interval);
     }, [currentIndex, arr]);
