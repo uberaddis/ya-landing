@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Suspense, useEffect, useState } from "react";
-import { ArrowLeft, CheckCircle2, ShieldCheck, Wallet, Car } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Wallet, Car } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 function PaymentContent() {
