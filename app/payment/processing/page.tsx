@@ -118,7 +118,7 @@ function PaymentContent() {
 
       {/* Bottom Action (Only visible on success) */}
       <div
-        className={`absolute bottom-0 left-0 right-0 p-6 transition-transform duration-500 ${step === 3 ? "translate-y-0" : "translate-y-full"}`}
+        className={`absolute bottom-10 left-0 right-0 p-6 transition-transform duration-500 ${step === 3 ? "translate-y-0" : "translate-y-full"}`}
       >
         <button
           onClick={handleReturn}
