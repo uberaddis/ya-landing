@@ -73,7 +73,7 @@ export default function Navbar() {
                         <Link href="#contact" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "contact" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => { setActiveLink("contact"); setIsMenuOpen(false) }}>Contact</Link>
                     </div>
                     <div className="flex-1 flex items-center justify-end">
-                        <Link href="#" className="relative group bg-[var(--background)] rounded-lg overflow-hidden">
+                        <Link href="/become-driver" className="relative group bg-[var(--background)] rounded-lg overflow-hidden">
                             <div className="relative z-10 text-[var(--foreground)] group-hover:text-[var(--background)] text-base text-center tracking-wide font-normal px-8 flex justify-center py-4 duration-300 before:absolute before:bottom-0 before:w-0 before:h-full before:bg-[var(--foreground)] before:duration-300 group-hover:before:w-full before:z-[-1] after:absolute after:top-0 after:w-full after:h-1 after:bg-[var(--foreground)] after:duration-300 hover:after:w-0">
                                 Become a Driver
                             </div>
