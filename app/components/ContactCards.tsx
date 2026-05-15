@@ -10,7 +10,7 @@ export default function ContactCards() {
                     </div>
                     <div>
                         <h3 className="text-[var(--primary)] text-sm font-medium">Call Us:</h3>
-                        <p className="text-black text-lg font-normal">+251 91112 1314</p>
+                        <p className="text-[var(--foreground)] text-lg font-normal">+251 91112 1314</p>
                     </div>
                 </div>
                 <div className="flex gap-5 sm:min-w-[300px] min-w-[200px] flex-wrap xs:flex-nowrap">
@@ -19,7 +19,7 @@ export default function ContactCards() {
                     </div>
                     <div>
                         <h3 className="text-[var(--primary)] text-sm font-medium">Email Us:</h3>
-                        <p className="text-black text-lg font-normal whitespace-nowrap">
+                        <p className="text-[var(--foreground)] text-lg font-normal whitespace-nowrap">
                             info@ya-ride.com
                         </p>
                     </div>
@@ -33,7 +33,7 @@ export default function ContactCards() {
                     </div>
                     <div>
                         <h3 className="text-[var(--primary)] text-sm font-medium">Visit Us:</h3>
-                        <p className="text-black text-lg font-normal">
+                        <p className="text-[var(--foreground)] text-lg font-normal">
                             Lideta Sub City Woreda 8
                         </p>
                     </div>

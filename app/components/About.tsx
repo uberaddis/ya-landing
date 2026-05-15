@@ -12,7 +12,7 @@ export default function About() {
                         <h3 className='text-base font-medium'>Trusted Ride Services in All Addis</h3>
                         <p className='text-sm font-light'>ya ride is your go-to app for safe, reliable, and affordable transportation. Whether you need a quick ride across town or a long-distance journey, we connect you with professional drivers in minutes. With a user-friendly interface, real-time tracking, and transparent pricing, ya ride ensures a seamless travel experience. Our drivers are vetted for safety and professionalism, giving you peace of mind on every trip.</p>
                     </div>
-                    <Link href={""} className='w-fit px-10 py-3 bg-[var(--foreground)] text-[var(--background)] text-xs font-semibold rounded-lg'>Download App</Link>
+                    <Link href={"/coming-soon"} className='w-fit px-10 py-3 bg-[var(--foreground)] text-[var(--background)] text-xs font-semibold rounded-lg'>Download App</Link>
                 </div>
             </div>
             <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-auto md:translate-x-0 blur-lg md:blur-none flex-1 py-10 z-[-1]">

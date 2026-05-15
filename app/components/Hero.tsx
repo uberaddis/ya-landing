@@ -10,7 +10,7 @@ export default function Hero() {
                 <div className="max-w-sm relative flex flex-col justify-end md:justify-center pb-20 md:pb-0 h-full">
                     <h1 className='text-2xl sm:text-4xl md:text-3xl xl:text-4xl font-extrabold mb-8'>Your Ride, On Demand. Anytime, Anywhere.</h1>
                     <p className='text-sm lg:text-base font-light mb-5'>Experience seamless, safe, and affordable rides with just a tap. ya ride connects you to reliable drivers in minutes.</p>
-                    <Link href={""} className='w-fit px-10 py-3 bg-[var(--foreground)] text-[var(--background)] text-sm font-semibold rounded-lg'>Download Now</Link>
+                    <Link href={"/coming-soon"} className='w-fit px-10 py-3 bg-[var(--foreground)] text-[var(--background)] text-sm font-semibold rounded-lg'>Download Now</Link>
                 </div>
             </div>
             <div className="absolute top-20 right-0 md:relative md:top-auto md:right-auto md:flex-[.6] h-auto md:h-full flex justify-start items-end md:py-24 overflow-hidden">

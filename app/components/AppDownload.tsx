@@ -19,14 +19,14 @@ export default function AppDownload() {
                         <p className='text-sm font-light'>Experience the convenience of ya-ride on your mobile device. Download our app to request rides, track your driver, and manage your trips with ease. Available for both iOS and Android, the ya-ride app is designed to make your transportation experience seamless and efficient.</p>
                     </div>
                     <div className="max-w-lg flex flex-wrap sm:flex-nowrap items-center justify-center md:justify-start gap-5">
-                        <Link href={""} className='w-fit px-5 py-3 bg-[var(--foreground)] text-[var(--background)] text-xs font-semibold flex items-center gap-3 rounded-lg'>
+                        <Link href={"/coming-soon"} className='w-fit px-5 py-3 bg-[var(--foreground)] text-[var(--background)] text-xs font-semibold flex items-center gap-3 rounded-lg'>
                             <FaApple className='text-4xl' />
                             <div className="flex flex-col text-nowrap">
                                 <span className='text-sm font-extralight'>Download from</span>
                                 <span className='text-sm font-semibold'>Apple App Store</span>
                             </div>
                         </Link>
-                        <Link href={""} className='w-fit px-5 py-3 bg-[var(--foreground)] text-[var(--background)] text-xs font-semibold flex items-center gap-3 rounded-lg'>
+                        <Link href={"/coming-soon"} className='w-fit px-5 py-3 bg-[var(--foreground)] text-[var(--background)] text-xs font-semibold flex items-center gap-3 rounded-lg'>
                             <FaAndroid className='text-4xl' />
                             <div className="flex flex-col text-nowrap">
                                 <span className='text-sm font-extralight'>Download from</span>

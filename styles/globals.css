@@ -4,6 +4,8 @@
   --background: #ffffff;
   --foreground: #000000;
   --primary: #02bf63;
+  --light-background: #ffffff88;
+  --light-foreground: #00000088;
 }
 
 @theme inline {
@@ -16,6 +18,8 @@
     --background: #000000;
     --foreground: #ededed;
     --primary: #02bf63;
+    --light-background: #00000088;
+    --light-foreground: #ffffff88;
   }
 }
 

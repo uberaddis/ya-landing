@@ -49,7 +49,7 @@ export default function ContactForm() {
                         name="name"
                         type="text"
                         placeholder="Full Name*"
-                        className="min-w-[150px] sm:min-w-[300px] w-full bg-transparent py-3 placeholder:text-[#888] text-black text-base font-light outline-none border-b border-[#00000088] focus:border-[var(--primary)] duration-300"
+                        className="min-w-[150px] sm:min-w-[300px] w-full bg-transparent py-3 placeholder:text-[#888] text-black text-base font-light outline-none border-b border-[var(--light-foreground)] focus:border-[var(--primary)] duration-300"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -57,7 +57,7 @@ export default function ContactForm() {
                         name="email"
                         type="email"
                         placeholder="Email Address*"
-                        className="min-w-[150px] sm:min-w-[300px] w-full bg-transparent py-3 placeholder:text-[#888] text-black text-base font-light outline-none border-b border-[#00000088] focus:border-[var(--primary)] duration-300"
+                        className="min-w-[150px] sm:min-w-[300px] w-full bg-transparent py-3 placeholder:text-[#888] text-black text-base font-light outline-none border-b border-[var(--light-foreground)] focus:border-[var(--primary)] duration-300"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
@@ -65,7 +65,7 @@ export default function ContactForm() {
                         name="phone"
                         type="tel"
                         placeholder="Phone Number*"
-                        className="min-w-[150px] sm:min-w-[300px] w-full bg-transparent py-3 placeholder:text-[#888] text-black text-base font-light outline-none border-b border-[#00000088] focus:border-[var(--primary)] duration-300"
+                        className="min-w-[150px] sm:min-w-[300px] w-full bg-transparent py-3 placeholder:text-[#888] text-black text-base font-light outline-none border-b border-[var(--light-foreground)] focus:border-[var(--primary)] duration-300"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                     />
@@ -73,7 +73,7 @@ export default function ContactForm() {
                         name="subject"
                         type="text"
                         placeholder="Subject*"
-                        className="min-w-[150px] sm:min-w-[300px] w-full bg-transparent py-3 placeholder:text-[#888] text-black text-base font-light outline-none border-b border-[#00000088] focus:border-[var(--primary)] duration-300"
+                        className="min-w-[150px] sm:min-w-[300px] w-full bg-transparent py-3 placeholder:text-[#888] text-black text-base font-light outline-none border-b border-[var(--light-foreground)] focus:border-[var(--primary)] duration-300"
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
                     />
@@ -84,7 +84,7 @@ export default function ContactForm() {
                         id="message"
                         placeholder="Your Message*"
                         rows={5}
-                        className="w-full bg-transparent py-3 placeholder:text-[#888] text-black text-base font-light outline-none border-b border-[#00000088] focus:border-[var(--primary)] duration-300"
+                        className="w-full bg-transparent py-3 placeholder:text-[#888] text-black text-base font-light outline-none border-b border-[var(--light-foreground)] focus:border-[var(--primary)] duration-300"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                     ></textarea>

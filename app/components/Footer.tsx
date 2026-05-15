@@ -1,5 +1,6 @@
 import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Download } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
     const footerLinks = {
@@ -10,23 +11,23 @@ export default function Footer() {
             { name: 'Grocery Delivery', href: '#' }
         ],
         company: [
-            { name: 'About Us', href: '#' },
-            { name: 'Careers', href: '#' },
-            { name: 'Press', href: '#' },
-            { name: 'Blog', href: '#' }
+            { name: 'Home', href: '/' },
+            { name: 'About Us', href: '#about' },
+            { name: 'Services', href: '#services' },
+            { name: 'Contact Us', href: '#contact' }
         ],
         support: [
-            { name: 'Help Center', href: '#' },
-            { name: 'Safety', href: '#' },
-            { name: 'Contact Us', href: '#' },
-            { name: 'Driver Support', href: '#' }
+            { name: 'Help Center', href: '/coming-soon' },
+            { name: 'Safety', href: '/coming-soon' },
+            { name: 'Contact Us', href: '/coming-soon#' },
+            { name: 'Driver Support', href: '/coming-soon' }
         ],
-        legal: [
-            { name: 'Terms of Service', href: '#' },
-            { name: 'Privacy Policy', href: '#' },
-            { name: 'Cookie Policy', href: '#' },
-            { name: 'Accessibility', href: '#' }
-        ]
+        // legal: [
+        //     { name: 'Terms of Service', href: '#' },
+        //     { name: 'Privacy Policy', href: '#' },
+        //     { name: 'Cookie Policy', href: '#' },
+        //     { name: 'Accessibility', href: '#' }
+        // ]
     };
 
     const socialLinks = [
@@ -40,7 +41,7 @@ export default function Footer() {
         <footer className="bg-black text-white">
             {/* Main Footer */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                     {/* Brand Section */}
                     <div className="lg:col-span-2">
                         <div className="flex items-center mb-6">
@@ -77,12 +78,11 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {footerLinks.services.map((link, index) => (
                                 <li key={index}>
-                                    <a
-                                        href={link.href}
+                                    <p
                                         className="text-gray-400 hover:text-green-400 transition-colors duration-300"
                                     >
                                         {link.name}
-                                    </a>
+                                    </p>
                                 </li>
                             ))}
                         </ul>
@@ -94,12 +94,12 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {footerLinks.company.map((link, index) => (
                                 <li key={index}>
-                                    <a
+                                    <Link
                                         href={link.href}
                                         className="text-gray-400 hover:text-green-400 transition-colors duration-300"
                                     >
                                         {link.name}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -111,19 +111,19 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {footerLinks.support.map((link, index) => (
                                 <li key={index}>
-                                    <a
+                                    <Link
                                         href={link.href}
                                         className="text-gray-400 hover:text-green-400 transition-colors duration-300"
                                     >
                                         {link.name}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
                     {/* Legal */}
-                    <div>
+                    {/* <div>
                         <h4 className="text-lg mb-6 text-green-400">Legal</h4>
                         <ul className="space-y-3">
                             {footerLinks.legal.map((link, index) => (
@@ -137,7 +137,7 @@ export default function Footer() {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* App Download Section */}
@@ -148,8 +148,8 @@ export default function Footer() {
                             <p className="text-gray-400">Download our app for the best experience</p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <a
-                                href="#"
+                            <Link
+                                href="/coming-soon"
                                 className="flex items-center bg-white text-gray-900 px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors duration-300 group"
                             >
                                 <Download className="w-5 h-5 mr-3 group-hover:text-green-600" />
@@ -157,9 +157,9 @@ export default function Footer() {
                                     <div className="text-xs text-gray-600">Download on the</div>
                                     <div className="text-sm">App Store</div>
                                 </div>
-                            </a>
-                            <a
-                                href="#"
+                            </Link>
+                            <Link
+                                href="/coming-soon"
                                 className="flex items-center bg-white text-gray-900 px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors duration-300 group"
                             >
                                 <Download className="w-5 h-5 mr-3 group-hover:text-green-600" />
@@ -167,7 +167,7 @@ export default function Footer() {
                                     <div className="text-xs text-gray-600">Get it on</div>
                                     <div className="text-sm">Google Play</div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -179,14 +179,14 @@ export default function Footer() {
                             {socialLinks.map((social, index) => {
                                 const IconComponent = social.icon;
                                 return (
-                                    <a
+                                    <Link
                                         key={index}
                                         href={social.href}
                                         aria-label={social.label}
                                         className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-green-600 hover:text-white transition-all duration-300 transform hover:scale-110"
                                     >
                                         <IconComponent className="w-5 h-5" />
-                                    </a>
+                                    </Link>
                                 );
                             })}
                         </div>
