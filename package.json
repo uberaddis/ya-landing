@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "lucide-react": "^0.525.0",
+    "marked": "^18.0.6",
     "mongoose": "^9.6.2",
     "next": "15.3.8",
     "react": "^19.0.0",

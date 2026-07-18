@@ -79,3 +79,48 @@ body {
     transform: translate3d(85px, 0, 0);
   }
 }
+
+.legal-docs h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.legal-docs h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.legal-docs h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.legal-docs hr {
+  margin: 1rem 0;
+}
+
+.legal-docs p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.legal-docs ul,
+.legal-docs ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.legal-docs li {
+  margin-bottom: 0.5rem;
+  list-style-type: square;
+}
+
+.legal-docs a {
+  color: var(--primary);
+  text-decoration: underline;
+}

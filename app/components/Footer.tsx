@@ -5,29 +5,29 @@ import Link from 'next/link';
 export default function Footer() {
     const footerLinks = {
         services: [
-            { name: 'Ride Hailing', href: '#' },
-            { name: 'Food Delivery', href: '#' },
-            { name: 'Package Delivery', href: '#' },
-            { name: 'Grocery Delivery', href: '#' }
+            { name: 'Ride Hailing', href: '/#services' },
+            { name: 'Food Delivery', href: '/#services' },
+            { name: 'Package Delivery', href: '/#services' },
+            { name: 'Grocery Delivery', href: '/#services' }
         ],
         company: [
             { name: 'Home', href: '/' },
-            { name: 'About Us', href: '#about' },
-            { name: 'Services', href: '#services' },
-            { name: 'Contact Us', href: '#contact' }
+            { name: 'About Us', href: '/#about' },
+            { name: 'Services', href: '/#services' },
+            { name: 'Contact Us', href: '/#contact' }
         ],
-        support: [
-            { name: 'Help Center', href: '/coming-soon' },
-            { name: 'Safety', href: '/coming-soon' },
-            { name: 'Contact Us', href: '/coming-soon#' },
-            { name: 'Driver Support', href: '/coming-soon' }
-        ],
-        // legal: [
-        //     { name: 'Terms of Service', href: '#' },
-        //     { name: 'Privacy Policy', href: '#' },
-        //     { name: 'Cookie Policy', href: '#' },
-        //     { name: 'Accessibility', href: '#' }
-        // ]
+        // support: [
+        //     { name: 'Help Center', href: '/coming-soon' },
+        //     { name: 'Safety', href: '/coming-soon' },
+        //     { name: 'Contact Us', href: '/coming-soon#' },
+        //     { name: 'Driver Support', href: '/coming-soon' }
+        // ],
+        legal: [
+            { name: 'Terms of Service', href: '/terms-of-service' },
+            { name: 'Privacy Policy', href: '/privacy-policy' },
+            // { name: 'Cookie Policy', href: '#' },
+            // { name: 'Accessibility', href: '#' }
+        ]
     };
 
     const socialLinks = [
@@ -59,15 +59,24 @@ export default function Footer() {
                         <div className="space-y-3">
                             <div className="flex items-center text-gray-400">
                                 <MapPin className="w-5 h-5 mr-3 text-green-500" />
-                                <span>123 Tech Street, San Francisco, CA 94105</span>
+                                <span>Arada Sub-city, Woreda 08, House No. 106</span>
                             </div>
                             <div className="flex items-center text-gray-400">
                                 <Phone className="w-5 h-5 mr-3 text-green-500" />
-                                <span>+1 (555) 123-4567</span>
+                                <div className="flex flex-col">
+                                    <Link href="tel:+251953553333" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
+                                        +2519 5355 3333
+                                    </Link>
+                                    <Link href="tel:+251944945555" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
+                                        +2519 4494 5555
+                                    </Link>
+                                </div>
                             </div>
                             <div className="flex items-center text-gray-400">
                                 <Mail className="w-5 h-5 mr-3 text-green-500" />
-                                <span>support@ya-ride.com</span>
+                                <Link href="mailto:support@yaride.et" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
+                                    support@yaride.et
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -78,11 +87,12 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {footerLinks.services.map((link, index) => (
                                 <li key={index}>
-                                    <p
+                                    <Link
+                                        href={link.href}
                                         className="text-gray-400 hover:text-green-400 transition-colors duration-300"
                                     >
                                         {link.name}
-                                    </p>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -106,7 +116,7 @@ export default function Footer() {
                     </div>
 
                     {/* Support */}
-                    <div>
+                    {/* <div>
                         <h4 className="text-lg mb-6 text-green-400">Support</h4>
                         <ul className="space-y-3">
                             {footerLinks.support.map((link, index) => (
@@ -120,10 +130,10 @@ export default function Footer() {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </div> */}
 
                     {/* Legal */}
-                    {/* <div>
+                    <div>
                         <h4 className="text-lg mb-6 text-green-400">Legal</h4>
                         <ul className="space-y-3">
                             {footerLinks.legal.map((link, index) => (
@@ -137,7 +147,7 @@ export default function Footer() {
                                 </li>
                             ))}
                         </ul>
-                    </div> */}
+                    </div>
                 </div>
 
                 {/* App Download Section */}

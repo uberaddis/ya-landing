@@ -11,7 +11,7 @@ import Testimonials from "./components/Testimonials";
 
 export default function Home() {
   return (
-    <div id='home' className="w-full min-h-screen pt-32 flex flex-col items-center">
+    <div id='home' className="w-full min-h-screen flex flex-col items-center">
       <Hero />
       <How />
       <About />

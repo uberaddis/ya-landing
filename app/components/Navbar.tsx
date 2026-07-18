@@ -13,16 +13,25 @@ export default function Navbar() {
     const pathSegments = pathname.split('#')[1] || '';
     const navbarRef = useRef<HTMLDivElement>(null);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
     const [activeLink, setActiveLink] = useState<string>("");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 0) {
+            // Get the current scroll position
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down & past the navbar height -> hide it
                 setIsScrolled(true);
             } else {
+                // Scrolling up -> show it
                 setIsScrolled(false);
             }
+
+            // Keep track of the last scroll position
+            setLastScrollY(currentScrollY);
         };
 
         if (pathSegments) {
@@ -44,13 +53,14 @@ export default function Navbar() {
                     break;
             }
         }
-        console.log("Pathname:", pathname);
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [navbarRef, pathSegments, pathname]);
+
+    }, [navbarRef, pathSegments, lastScrollY]);
 
     return (
-        <div ref={navbarRef} className={`fixed ${isScrolled && "shadow-[0_2px_15px_#000000aa]"} duration-300 left-0 top-0 w-full bg-[var(--foreground)] flex flex-col items-center z-[99999]`}>
+        <div ref={navbarRef} className={`fixed ${isScrolled && "-translate-y-full"} duration-300 left-0 top-0 w-full bg-[var(--foreground)] flex flex-col items-center z-[99999]`}>
             {/* <div className="absolute left-[calc(1/8*100%)] top-1/2 -translate-y-1/2">
                 
             </div> */}
@@ -59,14 +69,14 @@ export default function Navbar() {
             </div> */}
             <div className="w-full flex justify-center bg-[var(--foreground)] px-10 sm:px-16  lg:px-20 text-[var(--background)]">
                 <div className="max-w-[1150px] w-full flex items-center justify-between gap-5">
-                    <div className="flex-1 flex items-center justify-start h-full py-4">
+                    <Link href="/" className="flex-1 flex items-center justify-start h-full py-4">
                         <Image src="/logo_t.png" alt="Ya Logo" width={65} height={65} className="object-contain" />
-                    </div>
+                    </Link>
                     <div className="hidden flex-1 md:flex items-center justify-center gap-6">
-                        <Link href="#home" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >Home</Link>
-                        <Link href="#about" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "about" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >About</Link>
-                        <Link href="#services" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "services" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >Services</Link>
-                        <Link href="#contact" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "contact" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >Contact</Link>
+                        <Link href="/" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >Home</Link>
+                        <Link href="/#about" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "about" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >About</Link>
+                        <Link href="/#services" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "services" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >Services</Link>
+                        <Link href="/#contact" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "contact" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >Contact</Link>
                     </div>
                     <div className="hidden flex-1 md:flex items-center justify-end">
                         <Link href="/become-driver" className="relative group bg-[var(--background)] rounded-lg overflow-hidden">
@@ -90,10 +100,10 @@ export default function Navbar() {
                 </div>
                 <div className="relative w-full flex flex-col items-center gap-10 ">
                     <div className="flex-1 flex flex-col items-center justify-center gap-6">
-                        <Link href="#home" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>Home</Link>
-                        <Link href="#about" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "about" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>About</Link>
-                        <Link href="#services" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "services" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>Services</Link>
-                        <Link href="#contact" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "contact" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>Contact</Link>
+                        <Link href="/" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>Home</Link>
+                        <Link href="/#about" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "about" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>About</Link>
+                        <Link href="/#services" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "services" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>Services</Link>
+                        <Link href="/#contact" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "contact" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>Contact</Link>
                     </div>
                     <div className="flex-1 flex items-center justify-end">
                         <Link href="/become-driver" className="relative group bg-[var(--background)] rounded-lg overflow-hidden">
