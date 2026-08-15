@@ -99,7 +99,21 @@ You can choose whether to share your location by adjusting the privacy settings 
 
 ### 6.3 Account Deletion
 
-You may request the deletion of your account at any time by contacting our support team or using the in-app "Delete Account" button. Upon validation, your account will be deactivated, and personal data will be deleted or anonymized, subject to regulatory retention limits.
+You can delete your account at any time from the app (Profile → Delete Account) or at https://yaride.et/delete-account. You'll be asked to verify your phone number before the request is accepted.
+
+Deletion cannot be started while you have a trip in progress, a positive wallet balance, or, for drivers, an outstanding balance owed to Ya Ride. Contact support to resolve these first.
+
+Once accepted, your account enters a 30-day recovery period. You are signed out on all devices immediately and the account cannot be used during this time. You can cancel the deletion by logging in and confirming before the period ends.
+
+After 30 days, we permanently erase the personal information we hold about you: your name, phone number, email address, profile photo, saved addresses, and any identity or vehicle documents. Where information cannot be erased without destroying another person's records — for example, messages you exchanged with a driver — we remove your contribution and retain theirs.
+
+We retain records of trips and payments for 10 years, as required by the Commercial Code of Ethiopia and the Tax Administration Proclamation. These records are kept in a form that is not linked to your identity and cannot be used to identify you.
+
+If your wallet has a balance when the recovery period ends, deletion is paused and we will contact you so the balance can be paid out before proceeding.
+
+Rider and driver accounts are held separately. Deleting one does not delete the other.
+
+This reflects your right to erasure under Article 28 of the Personal Data Protection Proclamation No. 1321/2024, subject to the exceptions in Article 28(3) for compliance with legal obligations.
 
 ---
 
@@ -123,4 +137,4 @@ If you have questions, concerns, or requests regarding this Privacy Policy, plea
 - **General Manager:** Mr. Daniel Getahun Bezabih
 - **TIN:** 0094199977
 - **Office Address:** Arada Sub-city, Woreda 08, House No. 106
-- **Email:** uberaddis@gmail.com
+- **Email:** support@yaride.et

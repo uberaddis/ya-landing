@@ -41,6 +41,14 @@ You must register for an account to use the Services. You agree to:
 
 Registration requires a valid Ethiopian mobile phone number (+251). You will receive an SMS-based One-Time Password (OTP) to verify your device. The Company is not responsible for any mobile carrier fees incurred in this process.
 
+### 2.4 Account Deletion
+
+You may delete your account at any time through the app or at https://yaride.et/delete-account. Deletion is subject to a 30-day recovery period during which the account is suspended and can be restored by you.
+
+We may decline a deletion request while you have a trip in progress, a wallet balance, or an outstanding amount owed to Ya Ride. Deletion does not cancel any obligation you owe, and does not waive any amount Ya Ride owes you.
+
+Deleting your account does not affect records we are required by law to retain. See our Privacy Policy for what is erased and what is kept.
+
 ---
 
 ## 3. THE YA RIDE SERVICES
@@ -181,4 +189,4 @@ If you have any questions, feedback, or complaints regarding these Terms or the 
 - **General Manager:** Mr. Daniel Getahun Bezabih
 - **TIN:** 0094199977
 - **Office Address:** Arada Sub-city, Woreda 08, House No. 106
-- **Email:** uberaddis@gmail.com
+- **Email:** support@yaride.et

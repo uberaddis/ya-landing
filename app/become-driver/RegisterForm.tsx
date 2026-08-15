@@ -4,7 +4,6 @@ import { useState } from 'react';
 export default function RegisterForm() {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
-    const [backupPhone, setBackupPhone] = useState('');
 
     const [msg, setMsg] = useState<string>('')
     const [loading, setLoading] = useState(false)
@@ -17,7 +16,7 @@ export default function RegisterForm() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, phone, backupPhone })
+                body: JSON.stringify({ name, phone })
             })
 
             const data = await res.json()
@@ -25,7 +24,6 @@ export default function RegisterForm() {
                 setLoading(false)
                 setName('')
                 setPhone('')
-                setBackupPhone('')
                 setMsg('Driver Registration Successful')
                 setTimeout(() => {
                     setMsg('')
@@ -55,11 +53,6 @@ export default function RegisterForm() {
                 <div className="w-full flex flex-col gap-2">
                     <label htmlFor="phone" className="text-[var(--foreground)] text-base font-normal">Phone</label>
                     <input className="w-full h-10 border-[1px] border-[var(--foreground)] rounded-lg px-5 text-[var(--foreground)] placeholder:text-[var(--foreground)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:ring-[1px] focus:ring-[var(--primary)]" type="tel" name="phone" id="phone" placeholder="0912345678" onChange={(e) => setPhone(e.target.value)} value={phone} />
-                </div>
-                {/* backup phone (optional) */}
-                <div className="w-full flex flex-col gap-2">
-                    <label htmlFor="backupPhone" className="text-[var(--foreground)] text-base font-normal">Backup Phone (Optional)</label>
-                    <input className="w-full h-10 border-[1px] border-[var(--foreground)] rounded-lg px-5 text-[var(--foreground)] placeholder:text-[var(--foreground)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:ring-[1px] focus:ring-[var(--primary)]" type="tel" name="backupPhone" id="backupPhone" placeholder="0912345678" onChange={(e) => setBackupPhone(e.target.value)} value={backupPhone} />
                 </div>
                 {/* submit */}
                 <div className="w-full flex flex-col gap-2">

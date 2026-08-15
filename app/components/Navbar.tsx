@@ -1,119 +1,106 @@
 'use client'
+
+import { ArrowUpRight, Menu, X } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
-// import NavbarPrice from './NavbarPrice';
-import Image from 'next/image';
-import Wave from './Wave';
-import { FiMenu } from 'react-icons/fi';
-import { IoCloseOutline } from 'react-icons/io5';
-import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react'
+import LiquidGlass from './LiquidGlass'
+
+const navigation = [
+    { href: '/#home', label: 'Home', id: 'home' },
+    { href: '/#about', label: 'About', id: 'about' },
+    { href: '/#services', label: 'Services', id: 'services' },
+    { href: '/#contact', label: 'Contact', id: 'contact' },
+] as const
 
 export default function Navbar() {
-    const pathname = usePathname()
-    const pathSegments = pathname.split('#')[1] || '';
-    const navbarRef = useRef<HTMLDivElement>(null);
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [lastScrollY, setLastScrollY] = useState(0);
-    const [activeLink, setActiveLink] = useState<string>("");
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [activeLink, setActiveLink] = useState('home')
 
     useEffect(() => {
-        const handleScroll = () => {
-            // Get the current scroll position
-            const currentScrollY = window.scrollY;
-
-            if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                // Scrolling down & past the navbar height -> hide it
-                setIsScrolled(true);
-            } else {
-                // Scrolling up -> show it
-                setIsScrolled(false);
-            }
-
-            // Keep track of the last scroll position
-            setLastScrollY(currentScrollY);
-        };
-
-        if (pathSegments) {
-            switch (pathSegments) {
-                case '':
-                    setActiveLink("home");
-                    break;
-                case 'about':
-                    setActiveLink("about");
-                    break;
-                case 'services':
-                    setActiveLink("services");
-                    break;
-                case 'contact':
-                    setActiveLink("contact");
-                    break;
-                default:
-                    setActiveLink("");
-                    break;
-            }
+        const syncActiveLink = () => {
+            setActiveLink(window.location.hash.replace('#', '') || 'home')
         }
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        syncActiveLink()
+        window.addEventListener('hashchange', syncActiveLink)
+        return () => window.removeEventListener('hashchange', syncActiveLink)
+    }, [])
 
-    }, [navbarRef, pathSegments, lastScrollY]);
+    const handleNavigation = (id: string) => {
+        setActiveLink(id)
+        setIsMenuOpen(false)
+    }
 
     return (
-        <div ref={navbarRef} className={`fixed ${isScrolled && "-translate-y-full"} duration-300 left-0 top-0 w-full bg-[var(--foreground)] flex flex-col items-center z-[99999]`}>
-            {/* <div className="absolute left-[calc(1/8*100%)] top-1/2 -translate-y-1/2">
-                
-            </div> */}
-            {/* <div className="w-full flex justify-center px-20">
-                <NavbarPrice />
-            </div> */}
-            <div className="w-full flex justify-center bg-[var(--foreground)] px-10 sm:px-16  lg:px-20 text-[var(--background)]">
-                <div className="max-w-[1150px] w-full flex items-center justify-between gap-5">
-                    <Link href="/" className="flex-1 flex items-center justify-start h-full py-4">
-                        <Image src="/logo_t.png" alt="Ya Logo" width={65} height={65} className="object-contain" />
+        <header className="fixed inset-x-0 top-0 z-[99999] px-4 pt-4 sm:px-6 lg:px-8">
+            <div className="pointer-events-none absolute left-1/2 top-0 h-28 w-2/3 -translate-x-1/2 rounded-full bg-emerald-200/25 blur-3xl" />
+            <nav className="relative mx-auto flex h-[76px] w-full max-w-7xl items-center justify-between overflow-hidden rounded-[1.35rem] border border-white/70 bg-[linear-gradient(115deg,rgba(255,255,255,0.52),rgba(255,255,255,0.22)_42%,rgba(225,255,241,0.34))] px-4 shadow-[inset_0_1px_1px_rgba(255,255,255,0.95),inset_0_-1px_1px_rgba(15,23,42,0.08),0_22px_60px_rgba(15,23,42,0.2)] backdrop-blur-[22px] backdrop-saturate-[1.6] sm:px-5">
+                <LiquidGlass />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,rgba(255,255,255,0.45),transparent_30%,transparent_68%,rgba(45,212,191,0.08))]" />
+                <Link aria-label="Ya Ride home" className="relative flex items-center gap-3" href="/#home" onClick={() => handleNavigation('home')}>
+                    <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-[0.9rem] bg-black p-1.5 shadow-[0_8px_20px_rgba(0,0,0,0.3)] ring-1 ring-white/50">
+                        <Image alt="Ya Ride" className="h-full w-full object-contain" height={44} src="/logo_t.png" width={44} />
+                    </span>
+                    <span>
+                        <span className="block text-lg font-bold tracking-tight text-slate-950">Ya Ride</span>
+                        <span className="hidden text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-800/70 sm:block">Move with ease</span>
+                    </span>
+                </Link>
+
+                <div className="relative hidden items-center gap-1 rounded-2xl border border-white/55 bg-white/18 p-1 shadow-[inset_0_1px_1px_rgba(255,255,255,0.75)] md:flex">
+                    {navigation.map((item) => (
+                        <Link
+                            className={`rounded-xl px-4 py-2 text-sm font-medium transition ${activeLink === item.id ? 'bg-white/85 text-slate-950 shadow-[0_4px_12px_rgba(15,23,42,0.1)]' : 'text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)] hover:bg-white/20 hover:text-white'}`}
+                            href={item.href}
+                            key={item.id}
+                            onClick={() => handleNavigation(item.id)}
+                        >
+                            {item.label}
+                        </Link>
+                    ))}
+                </div>
+
+                <div className="relative flex items-center gap-2">
+                    <Link className="group relative hidden h-11 items-center gap-1.5 overflow-hidden rounded-xl bg-gradient-to-r from-emerald-300 via-[var(--primary)] to-teal-400 px-4 text-sm font-bold text-slate-950 shadow-[0_10px_25px_rgba(2,191,99,0.25)] transition hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(2,191,99,0.35)] md:inline-flex" href="/become-driver">
+                        <span className="absolute inset-0 -translate-x-full bg-white/35 transition duration-500 group-hover:translate-x-full" />
+                        <span className="relative">Drive with us</span>
+                        <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
                     </Link>
-                    <div className="hidden flex-1 md:flex items-center justify-center gap-6">
-                        <Link href="/" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >Home</Link>
-                        <Link href="/#about" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "about" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >About</Link>
-                        <Link href="/#services" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "services" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >Services</Link>
-                        <Link href="/#contact" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 before:rounded-full ${activeLink === "contact" ? "before:bg-[var(--primary)] font-semibold" : "font-extralight"} before:duration-300`} >Contact</Link>
-                    </div>
-                    <div className="hidden flex-1 md:flex items-center justify-end">
-                        <Link href="/become-driver" className="relative group bg-[var(--background)] rounded-lg overflow-hidden">
-                            <div className="relative z-10 text-[var(--foreground)] group-hover:text-[var(--background)] text-base text-center tracking-wide font-normal text-nowrap px-8 flex justify-center py-4 duration-300 before:absolute before:bottom-0 before:w-0 before:h-full before:bg-[var(--primary)] before:duration-300 group-hover:before:w-full before:z-[-1] after:absolute after:top-0 after:w-full after:h-1 after:bg-[var(--primary)] after:duration-300 hover:after:w-0">
-                                Become a Driver
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="flex-1 flex md:hidden items-center justify-end">
-                        <div className="flex items-center justify-center p-1 text-4xl text-[var(--primary)] border-2 border-[var(--primary)] rounded-sm cursor-pointer" onClick={() => setIsMenuOpen(true)}>
-                            <FiMenu />
-                        </div>
-                    </div>
+                    <button
+                        aria-expanded={isMenuOpen}
+                        aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                        className="grid h-11 w-11 place-items-center rounded-xl border border-white/55 bg-white/30 text-slate-950 shadow-[inset_0_1px_1px_rgba(255,255,255,0.75)] transition hover:bg-white/55 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] md:hidden"
+                        onClick={() => setIsMenuOpen((open) => !open)}
+                        type="button"
+                    >
+                        {isMenuOpen ? <X aria-hidden="true" className="h-5 w-5" /> : <Menu aria-hidden="true" className="h-5 w-5" />}
+                    </button>
                 </div>
-            </div>
-            <Wave />
-            <div className={`fixed left-0 top-0 ${isMenuOpen ? "translate-y-0" : "-translate-y-full"} w-full bg-[var(--primary)] pb-20 px-10 sm:px-16  lg:px-20 z-[9999] duration-300 border-b border-[var(--foreground)] md:hidden`}>
-                <div className="w-full flex items-center justify-between text-6xl text-[var(--foreground)] cursor-pointer mb-10" onClick={() => setIsMenuOpen(false)}>
-                    <Image src="/logo_v.jpg" alt="Ya Logo" width={100} height={100} className="object-contain" />
-                    <IoCloseOutline />
-                </div>
-                <div className="relative w-full flex flex-col items-center gap-10 ">
-                    <div className="flex-1 flex flex-col items-center justify-center gap-6">
-                        <Link href="/" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>Home</Link>
-                        <Link href="/#about" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "about" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>About</Link>
-                        <Link href="/#services" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "services" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>Services</Link>
-                        <Link href="/#contact" className={`relative text-base tracking-wide hover:text-[var(--primary)] duration-300 pb-2 before:absolute before:bottom-0 before:w-full before:h-1 ${activeLink === "contact" ? "before:bg-[var(--background)] font-semibold" : "font-extralight"} before:duration-300`} onClick={() => setIsMenuOpen(false)}>Contact</Link>
-                    </div>
-                    <div className="flex-1 flex items-center justify-end">
-                        <Link href="/become-driver" className="relative group bg-[var(--background)] rounded-lg overflow-hidden">
-                            <div className="relative z-10 text-[var(--foreground)] group-hover:text-[var(--background)] text-base text-center tracking-wide font-normal px-8 flex justify-center py-4 duration-300 before:absolute before:bottom-0 before:w-0 before:h-full before:bg-[var(--foreground)] before:duration-300 group-hover:before:w-full before:z-[-1] after:absolute after:top-0 after:w-full after:h-1 after:bg-[var(--foreground)] after:duration-300 hover:after:w-0">
-                                Become a Driver
-                            </div>
+            </nav>
+
+            {isMenuOpen && (
+                <div className="relative mx-auto mt-3 w-full max-w-7xl overflow-hidden rounded-[1.35rem] border border-white/60 p-3 shadow-[inset_0_1px_1px_rgba(255,255,255,0.95),0_24px_60px_rgba(15,23,42,0.2)] md:hidden">
+                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(125deg,rgba(255,255,255,0.68),rgba(234,255,247,0.42))] backdrop-blur-[26px] backdrop-saturate-[1.8]" />
+                    <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[var(--primary)]/20 blur-2xl" />
+                    <div className="flex flex-col gap-1">
+                        {navigation.map((item) => (
+                            <Link
+                                className={`relative rounded-xl px-4 py-3 text-sm font-medium transition ${activeLink === item.id ? 'bg-white/85 text-slate-950 shadow-sm' : 'text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)] hover:bg-white/20 hover:text-white'}`}
+                                href={item.href}
+                                key={item.id}
+                                onClick={() => handleNavigation(item.id)}
+                            >
+                                {item.label}
+                            </Link>
+                        ))}
+                        <Link className="relative mt-2 inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-300 via-[var(--primary)] to-teal-400 px-4 text-sm font-bold text-slate-950" href="/become-driver" onClick={() => setIsMenuOpen(false)}>
+                            Drive with us
+                            <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
                         </Link>
                     </div>
                 </div>
-            </div>
-        </div>
+            )}
+        </header>
     )
 }
