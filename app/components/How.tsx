@@ -56,7 +56,7 @@ export default function How() {
                         const Icon = step.icon
 
                         return (
-                            <article className="group relative rounded-[1.65rem] border border-slate-100 bg-[#f8faf8] p-6 shadow-[0_16px_40px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1.5 hover:border-emerald-200 hover:bg-white hover:shadow-[0_24px_55px_rgba(6,95,70,0.12)]" key={step.number}>
+                            <article className="group relative isolate overflow-hidden rounded-[1.65rem] border border-slate-100 bg-[#f8faf8] p-6 shadow-[0_16px_40px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1.5 hover:border-emerald-200 hover:bg-white hover:shadow-[0_24px_55px_rgba(6,95,70,0.12)]" key={step.number}>
                                 <div className={`absolute inset-x-0 top-0 h-1 rounded-t-[1.65rem] bg-gradient-to-r ${step.accent}`} />
                                 <div className="relative flex items-start justify-between">
                                     <div className={`grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br ${step.accent} text-white shadow-lg shadow-emerald-900/10 transition duration-300 group-hover:scale-110 group-hover:rotate-3`}>
