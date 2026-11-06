@@ -1,6 +1,8 @@
-import { ArrowUpRight, Download, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { FaAndroid, FaApple } from 'react-icons/fa'
+import Reveal from './Reveal'
 
 const linkGroups = [
     {
@@ -33,45 +35,44 @@ const linkGroups = [
 
 export default function Footer() {
     return (
-        <footer className="relative isolate overflow-hidden bg-[#050d09] text-white">
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_10%_0%,rgba(2,191,99,0.23),transparent_28%),radial-gradient(circle_at_92%_80%,rgba(45,212,191,0.12),transparent_25%),linear-gradient(145deg,#050d09,#071b13)]" />
-            <div className="absolute left-1/2 top-0 -z-10 h-px w-[80%] -translate-x-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+        <footer className="on-dark w-full bg-ink text-paper">
+            <div className="wrap pt-16 sm:pt-24">
+                <div className="grid gap-10 border-b-2 border-paper/20 pb-14 lg:grid-cols-12 lg:items-end">
+                    <Reveal className="lg:col-span-7">
+                        <p className="display text-[clamp(2.75rem,8vw,6.5rem)]">Take Ya <span className="text-ya">with you.</span></p>
+                        <p className="mt-5 max-w-md text-lg text-paper/70">Download the app for the full Ya Ride experience.</p>
+                    </Reveal>
+                    <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">
+                        <StoreLink icon={FaApple} label="Download on the" store="App Store" />
+                        <StoreLink icon={FaAndroid} label="Get it on" store="Google Play" />
+                    </div>
+                </div>
 
-            <div className="mx-auto w-full max-w-7xl px-5 pb-8 pt-16 sm:px-8 sm:pt-20 lg:px-10">
-                <div className="grid gap-12 lg:grid-cols-[1.45fr_0.55fr_0.55fr_0.55fr] lg:gap-8">
+                <div className="grid gap-12 py-14 lg:grid-cols-[1.4fr_0.6fr_0.6fr_0.6fr] lg:gap-8">
                     <div>
-                        <Link aria-label="Ya Ride home" className="inline-flex items-center gap-3" href="/#home">
-                            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-black p-1.5 shadow-[0_12px_30px_rgba(0,0,0,0.32)] ring-1 ring-white/15">
-                                <Image alt="Ya Ride" className="h-full w-full object-contain" height={48} src="/logo_t.png" width={48} />
-                            </span>
-                            <span>
-                                <span className="block text-xl font-bold tracking-tight">Ya Ride</span>
-                                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-200/75">Move with ease</span>
-                            </span>
-                        </Link>
-                        <p className="mt-6 max-w-sm text-sm leading-6 text-white/65">
+                        <p className="max-w-sm text-base leading-7 text-paper/70">
                             Your all-in-one platform for rides, food, packages, and grocery delivery—built to make every day feel easier.
                         </p>
-                        <Link className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-emerald-200 transition hover:gap-3 hover:text-emerald-100" href="/become-driver">
+                        <Link className="group mt-6 inline-flex items-center gap-2 font-display text-lg font-bold text-ya underline-offset-4 hover:underline" href="/become-driver">
                             Drive with Ya Ride
-                            <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                            <ArrowUpRight aria-hidden="true" className="h-5 w-5" />
                         </Link>
 
-                        <div className="mt-8 space-y-3 text-sm text-white/65">
-                            <a className="flex items-start gap-3 transition hover:text-white" href="https://maps.google.com/?q=Arada+Sub-city+Woreda+08+House+No.+106" rel="noreferrer" target="_blank">
-                                <MapPin aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" />
+                        <div className="mt-8 space-y-3 text-sm text-paper/75">
+                            <a className="flex items-start gap-3 transition-colors hover:text-ya" href="https://maps.google.com/?q=Arada+Sub-city+Woreda+08+House+No.+106" rel="noreferrer" target="_blank">
+                                <MapPin aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-ya" />
                                 <span>Arada Sub-city, Woreda 08, House No. 106</span>
                             </a>
-                            <a className="flex items-center gap-3 transition hover:text-white" href="tel:+251953553333">
-                                <Phone aria-hidden="true" className="h-4 w-4 text-emerald-300" />
+                            <a className="flex items-center gap-3 transition-colors hover:text-ya" href="tel:+251953553333">
+                                <Phone aria-hidden="true" className="h-4 w-4 text-ya" />
                                 <span>+2519 5355 3333</span>
                             </a>
-                            <a className="flex items-center gap-3 transition hover:text-white" href="tel:8455">
-                                <Phone aria-hidden="true" className="h-4 w-4 text-emerald-300" />
-                                <span>8455</span>
+                            <a className="flex items-center gap-3 transition-colors hover:text-ya" href="tel:9392">
+                                <Phone aria-hidden="true" className="h-4 w-4 text-ya" />
+                                <span>9392</span>
                             </a>
-                            <a className="flex items-center gap-3 transition hover:text-white" href="mailto:support@yaride.et">
-                                <Mail aria-hidden="true" className="h-4 w-4 text-emerald-300" />
+                            <a className="flex items-center gap-3 transition-colors hover:text-ya" href="mailto:support@yaride.et">
+                                <Mail aria-hidden="true" className="h-4 w-4 text-ya" />
                                 <span>support@yaride.et</span>
                             </a>
                         </div>
@@ -79,11 +80,11 @@ export default function Footer() {
 
                     {linkGroups.map((group) => (
                         <div key={group.title}>
-                            <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-200">{group.title}</h2>
+                            <h2 className="text-sm font-bold uppercase tracking-wider text-ya">{group.title}</h2>
                             <ul className="mt-5 space-y-3">
                                 {group.links.map((link) => (
                                     <li key={link.name}>
-                                        <Link className="text-sm text-white/60 transition hover:text-white" href={link.href}>{link.name}</Link>
+                                        <Link className="text-base text-paper/75 transition-colors hover:text-ya" href={link.href}>{link.name}</Link>
                                     </li>
                                 ))}
                             </ul>
@@ -91,35 +92,28 @@ export default function Footer() {
                     ))}
                 </div>
 
-                <div className="mt-14 flex flex-col gap-6 rounded-[1.65rem] border border-white/15 bg-white/[0.07] p-6 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:p-8">
-                    <div>
-                        <p className="text-lg font-semibold text-white">Take Ya with you.</p>
-                        <p className="mt-1 text-sm text-white/65">Download the app for the full Ya Ride experience.</p>
+                <div className="flex flex-col gap-6 border-t-2 border-paper/20 py-8 sm:flex-row sm:items-end sm:justify-between">
+                    <Link aria-label="Ya Ride home" href="/#home">
+                        <Image alt="Ya Ride" className="h-24 w-auto sm:h-32" height={128} src="/logo_t.png" width={150} />
+                    </Link>
+                    <div className="space-y-1 text-sm text-paper/55 sm:text-right">
+                        <p>Move with ease.</p>
+                        <p>© 2026 Ya Ride. All rights reserved.</p>
+                        <p>Built for Addis Ababa.</p>
                     </div>
-                    <div className="flex flex-col gap-3 sm:flex-row">
-                        <StoreLink label="Download on the" store="App Store" />
-                        <StoreLink label="Get it on" store="Google Play" />
-                    </div>
-                </div>
-
-                <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-white/45 sm:flex-row sm:items-center sm:justify-between">
-                    <p>© 2026 Ya Ride. All rights reserved.</p>
-                    <p>Built for Addis Ababa.</p>
                 </div>
             </div>
         </footer>
     )
 }
 
-function StoreLink({ label, store }: { label: string; store: string }) {
+function StoreLink({ icon: Icon, label, store }: { icon: typeof FaApple; label: string; store: string }) {
     return (
-        <Link className="group flex min-w-40 items-center gap-3 rounded-xl border border-white/15 bg-black/20 px-4 py-3 transition hover:-translate-y-0.5 hover:border-emerald-300/50 hover:bg-white/10" href="/coming-soon">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-white/10 text-emerald-200">
-                <Download aria-hidden="true" className="h-4 w-4" />
-            </span>
+        <Link className="group inline-flex min-w-48 items-center gap-3 rounded-md border-2 border-paper px-5 py-3 text-paper transition-colors hover:border-ya hover:bg-ya hover:text-ink" href="/coming-soon">
+            <Icon aria-hidden="true" className="text-3xl" />
             <span>
-                <span className="block text-[10px] leading-none text-white/55">{label}</span>
-                <span className="mt-1 block text-sm font-semibold leading-none text-white">{store}</span>
+                <span className="block text-[10px] font-medium uppercase leading-none tracking-wider opacity-70">{label}</span>
+                <span className="mt-1 block font-display text-base font-bold leading-none">{store}</span>
             </span>
         </Link>
     )

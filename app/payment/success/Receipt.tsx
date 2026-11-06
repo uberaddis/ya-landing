@@ -6,44 +6,34 @@ import Link from 'next/link';
 export default function Receipt() {
     const searchParams = useSearchParams()
 
-    const amount = searchParams.get('amount')
-    const paymentMethod = searchParams.get('paymentMethod')
-    const status = searchParams.get('status')
-    const transactionId = searchParams.get('transactionId')
-    const date = searchParams.get('date')
+    const rows = [
+        ['Amount', searchParams.get('amount')],
+        ['Payment method', searchParams.get('paymentMethod')],
+        ['Status', searchParams.get('status')],
+        ['Transaction ID', searchParams.get('transactionId')],
+        ['Date', searchParams.get('date')],
+    ] as const
+
     return (
-        <div className="max-w-2xl w-full flex flex-col items-center rounded-xl overflow-hidden shadow-lg">
-            <div className="w-full flex flex-col items-center gap-5 bg-[var(--primary)] px-16 py-14">
-                <h2 className='text-4xl font-light text-center'>Transaction Successful</h2>
-                <FaRegCheckCircle className='text-5xl text-[var(--foreground)]' />
+        <div className="w-full max-w-2xl border-2 border-ink bg-paper">
+            <div className="flex items-center justify-between gap-6 border-b-2 border-ink bg-ya px-6 py-8 sm:px-10 sm:py-10">
+                <h2 className="display text-4xl sm:text-5xl">Transaction successful</h2>
+                <FaRegCheckCircle aria-hidden="true" className="shrink-0 text-5xl" />
             </div>
 
-            <div className="w-full flex flex-col gap-2 bg-[var(--background)] px-16 py-14 text-xl">
-                <div className="flex justify-between gap-10">
-                    <span className='font-medium text-right flex-1'>Amount:</span>
-                    <span className="text-left flex-1">{amount}</span>
-                </div>
-                <div className="flex justify-between gap-10">
-                    <span className='font-medium text-right flex-1'>Payment Method:</span>
-                    <span className="text-left flex-1">{paymentMethod}</span>
-                </div>
-                <div className="flex justify-between gap-10">
-                    <span className='font-medium text-right flex-1'>Status:</span>
-                    <span className="text-left flex-1">{status}</span>
-                </div>
-                <div className="flex justify-between gap-10">
-                    <span className='font-medium text-right flex-1'>Transaction ID:</span>
-                    <span className="text-left flex-1">{transactionId}</span>
-                </div>
-                <div className="flex justify-between gap-10">
-                    <span className='font-medium text-right flex-1'>Date:</span>
-                    <span className="text-left flex-1">{date}</span>
-                </div>
-                <div className="w-full flex justify-center">
-                    <Link href={"/"} className="w-fit px-16 py-2 bg-[var(--primary)] text-xl font-black text-[var(--foreground)] rounded-full mt-10 shadow-[0_5px_10px_#00000055] cursor-pointer">
-                        <span>Go to App</span>
-                    </Link>
-                </div>
+            <dl className="px-6 sm:px-10">
+                {rows.map(([label, value]) => (
+                    <div className="grid gap-1 border-b-2 border-ink py-5 last:border-b-0 sm:grid-cols-[11rem_1fr] sm:gap-6" key={label}>
+                        <dt className="text-sm font-bold uppercase tracking-wider text-muted">{label}</dt>
+                        <dd className="break-words font-display text-xl font-bold">{value || '—'}</dd>
+                    </div>
+                ))}
+            </dl>
+
+            <div className="border-t-2 border-ink p-6 sm:p-10">
+                <Link href="/" className="btn btn-ink w-full sm:w-auto">
+                    Go to App
+                </Link>
             </div>
         </div>
     )

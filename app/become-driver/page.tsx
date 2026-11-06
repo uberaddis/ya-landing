@@ -8,8 +8,18 @@ export const metadata: Metadata = {
 
 export default function Page() {
     return (
-        <div className="w-full min-h-screen mt-[200px] px-10 flex flex-col items-center">
-            <RegisterForm />
-        </div>
+        <main className="min-h-screen bg-paper pt-20 text-ink">
+            <section className="border-b-2 border-ink bg-ya">
+                <div className="wrap pb-12 pt-14 sm:pb-16 sm:pt-20">
+                    <p className="marker">Drive with Ya</p>
+                    <h1 className="display mt-5 text-[clamp(2.75rem,9vw,7rem)]">Become a Driver</h1>
+                </div>
+            </section>
+            <section className="wrap py-12 sm:py-16">
+                <div className="max-w-xl">
+                    <RegisterForm />
+                </div>
+            </section>
+        </main>
     )
 }

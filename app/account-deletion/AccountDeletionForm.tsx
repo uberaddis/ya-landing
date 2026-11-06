@@ -103,49 +103,61 @@ export default function AccountDeletionForm() {
     setStep("role");
   }
 
+  const stepNumber = step === "role" ? 1 : step === "phone" ? 2 : step === "code" ? 3 : step === "confirm" ? 4 : 0;
+  const dangerButton =
+    "btn !border-red-700 !bg-red-700 !text-paper hover:!border-ink hover:!bg-ink";
+
   return (
-    <div className="mt-8">
+    <div>
+      {stepNumber > 0 && (
+        <div className="mb-8">
+          <p className="text-sm font-bold uppercase tracking-wider text-muted">Step {stepNumber} of 4</p>
+          <div aria-hidden="true" className="mt-3 flex gap-2">
+            {[1, 2, 3, 4].map((n) => (
+              <span className={`h-2 flex-1 border-2 border-ink ${n <= stepNumber ? "bg-ink" : "bg-transparent"}`} key={n} />
+            ))}
+          </div>
+        </div>
+      )}
+
       {step === "role" && (
         <div>
-          <h2 className="text-lg font-semibold text-[var(--foreground)]">
-            Which account do you want to delete?
-          </h2>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <h2 className="display text-3xl sm:text-4xl">Which account do you want to delete?</h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {([
               ["rider", "Rider"],
               ["driver", "Driver"],
             ] as const).map(([accountRole, label]) => (
               <button
-                className="rounded-xl border border-black/15 px-4 py-4 text-left font-medium text-[var(--foreground)] transition hover:border-[var(--primary)] hover:bg-[var(--primary)]/5 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                className="group flex items-end justify-between border-2 border-ink bg-paper p-6 text-left transition-colors hover:bg-ya"
                 key={accountRole}
                 onClick={() => selectRole(accountRole)}
                 type="button"
               >
-                {label}
+                <span className="display text-4xl sm:text-5xl">{label}</span>
+                <span aria-hidden="true" className="display text-3xl transition-transform group-hover:translate-x-1">→</span>
               </button>
             ))}
           </div>
-          <p className="mt-3 text-sm leading-6 text-[var(--foreground)]/70">
+          <p className="mt-6 border-l-4 border-ya pl-4 text-sm leading-6 text-muted">
             Rider and driver accounts are separate. Delete each account independently.
           </p>
         </div>
       )}
 
       {step === "phone" && role && (
-        <form className="space-y-5" onSubmit={requestCode}>
+        <form className="space-y-8" onSubmit={requestCode}>
           <div>
-            <h2 className="text-lg font-semibold text-[var(--foreground)]">
-              Verify your {roleLabels[role].toLowerCase()}
-            </h2>
-            <p className="mt-1 text-sm text-[var(--foreground)]/70">
+            <h2 className="display text-3xl sm:text-4xl">Verify your {roleLabels[role].toLowerCase()}</h2>
+            <p className="mt-3 text-base leading-7 text-muted">
               Enter the mobile number associated with this account.
             </p>
           </div>
-          <label className="block text-sm font-medium text-[var(--foreground)]" htmlFor="account-deletion-phone">
-            Mobile number
+          <div>
+            <label className="field-label" htmlFor="account-deletion-phone">Mobile number</label>
             <input
               autoComplete="tel"
-              className="mt-2 h-11 w-full rounded-lg border border-black/20 bg-white px-3 text-base text-[var(--foreground)] outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/30"
+              className="field"
               id="account-deletion-phone"
               inputMode="tel"
               onChange={(event) => setPhone(event.target.value)}
@@ -154,26 +166,24 @@ export default function AccountDeletionForm() {
               type="tel"
               value={phone}
             />
-          </label>
+          </div>
           <ActionButtons busy={isSubmitting} onBack={startOver} primaryLabel="Send verification code" />
         </form>
       )}
 
       {step === "code" && role && (
-        <form className="space-y-5" onSubmit={reviewDeletion}>
+        <form className="space-y-8" onSubmit={reviewDeletion}>
           <div>
-            <h2 className="text-lg font-semibold text-[var(--foreground)]">
-              Enter your verification code
-            </h2>
-            <p className="mt-1 text-sm text-[var(--foreground)]/70">
+            <h2 className="display text-3xl sm:text-4xl">Enter your verification code</h2>
+            <p className="mt-3 text-base leading-7 text-muted">
               Enter the code sent to the mobile number for your {roleLabels[role].toLowerCase()}.
             </p>
           </div>
-          <label className="block text-sm font-medium text-[var(--foreground)]" htmlFor="account-deletion-code">
-            Verification code
+          <div>
+            <label className="field-label" htmlFor="account-deletion-code">Verification code</label>
             <input
               autoComplete="one-time-code"
-              className="mt-2 h-11 w-full rounded-lg border border-black/20 bg-white px-3 text-base tracking-[0.25em] text-[var(--foreground)] outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/30"
+              className="field font-display text-3xl font-bold tracking-[0.3em]"
               id="account-deletion-code"
               inputMode="numeric"
               onChange={(event) => setCode(event.target.value)}
@@ -181,7 +191,7 @@ export default function AccountDeletionForm() {
               type="text"
               value={code}
             />
-          </label>
+          </div>
           <ActionButtons
             busy={isSubmitting}
             onBack={() => {
@@ -196,14 +206,14 @@ export default function AccountDeletionForm() {
       )}
 
       {step === "confirm" && role && (
-        <div className="space-y-7">
+        <div className="space-y-8">
           <div>
-            <h2 className="text-2xl font-semibold text-[var(--foreground)]">Delete your account</h2>
-            <p className="mt-3 text-base leading-7 text-[var(--foreground)]/80">
-              Your account will be scheduled for deletion on <strong>{estimatedDeletionDate}</strong>.
+            <h2 className="display text-3xl sm:text-4xl">Delete your account</h2>
+            <p className="mt-4 text-lg leading-8 text-ink/80">
+              Your account will be scheduled for deletion on <strong className="bg-ya px-1.5">{estimatedDeletionDate}</strong>.
             </p>
           </div>
-          <div className="space-y-6 text-sm leading-6 text-[var(--foreground)]/80">
+          <div className="border-b-2 border-ink">
             <ConfirmationDetail title="What happens now">
               You&apos;ll be signed out on all devices immediately. Until {estimatedDeletionDate}, you won&apos;t be able to {role === "rider" ? "book rides" : "go online as a driver"} or receive notifications.
             </ConfirmationDetail>
@@ -223,26 +233,21 @@ export default function AccountDeletionForm() {
               Deleting your {role} account does not delete your {role === "rider" ? "driver" : "rider"} account. You&apos;ll need to delete that separately.
             </ConfirmationDetail>
           </div>
-          <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-black/15 p-4 text-sm leading-6 text-[var(--foreground)]">
+          <label className="flex cursor-pointer items-start gap-4 border-2 border-ink bg-paper p-5 text-base leading-6">
             <input
               checked={deletionConfirmed}
-              className="mt-1 h-4 w-4 accent-red-700"
+              className="mt-1 h-5 w-5 shrink-0 accent-red-700"
               onChange={(event) => setDeletionConfirmed(event.target.checked)}
               type="checkbox"
             />
-            <span>I understand and want to schedule deletion of my {role} account.</span>
+            <span className="font-semibold">I understand and want to schedule deletion of my {role} account.</span>
           </label>
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-            <button
-              className="h-11 rounded-lg border border-black/20 px-4 font-medium text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-              disabled={isSubmitting}
-              onClick={startOver}
-              type="button"
-            >
+            <button className="btn btn-line" disabled={isSubmitting} onClick={startOver} type="button">
               Choose another account
             </button>
             <button
-              className="h-11 rounded-lg bg-red-700 px-4 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2"
+              className={dangerButton}
               disabled={isSubmitting || !deletionConfirmed}
               onClick={submitDeletion}
               type="button"
@@ -262,7 +267,7 @@ export default function AccountDeletionForm() {
       )}
 
       {error && (
-        <p aria-live="polite" className="mt-5 rounded-lg bg-red-50 p-3 text-sm text-red-800" role="alert">
+        <p aria-live="polite" className="mt-6 border-2 border-red-700 bg-red-50 p-4 text-sm font-semibold text-red-800" role="alert">
           {error}
         </p>
       )}
@@ -287,16 +292,12 @@ function DeletionResult({
   const message = getResultMessage(result, role);
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-8">
       <div>
-        <h2 className="text-2xl font-semibold text-[var(--foreground)]">{title}</h2>
-        <p className="mt-3 text-sm leading-6 text-[var(--foreground)]/80">{message}</p>
+        <h2 className="display text-4xl sm:text-5xl">{title}</h2>
+        <p className="mt-5 max-w-xl border-l-4 border-ya pl-4 text-lg leading-8 text-ink/80">{message}</p>
       </div>
-      <button
-        className="h-11 rounded-lg border border-black/20 px-4 font-medium text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-        onClick={onContinue}
-        type="button"
-      >
+      <button className="btn btn-ink" onClick={onContinue} type="button">
         Start another request
       </button>
     </div>
@@ -327,9 +328,9 @@ function getResultMessage(result: AccountDeletionRequestResult, role: AccountRol
 
 function ConfirmationDetail({ children, title }: { children: ReactNode; title: string }) {
   return (
-    <section>
-      <h3 className="font-semibold text-[var(--foreground)]">{title}</h3>
-      <p className="mt-1">{children}</p>
+    <section className="grid gap-2 border-t-2 border-ink py-5 sm:grid-cols-[14rem_1fr] sm:gap-8">
+      <h3 className="font-display text-lg font-bold leading-snug tracking-tight">{title}</h3>
+      <p className="text-sm leading-6 text-ink/75 sm:text-base sm:leading-7">{children}</p>
     </section>
   );
 }
@@ -345,19 +346,10 @@ function ActionButtons({
 }) {
   return (
     <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-      <button
-        className="h-11 rounded-lg border border-black/20 px-4 font-medium text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-        disabled={busy}
-        onClick={onBack}
-        type="button"
-      >
+      <button className="btn btn-line" disabled={busy} onClick={onBack} type="button">
         Back
       </button>
-      <button
-        className="h-11 rounded-lg bg-[var(--primary)] px-4 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2"
-        disabled={busy}
-        type="submit"
-      >
+      <button className="btn btn-green" disabled={busy} type="submit">
         {busy ? "Please wait…" : primaryLabel}
       </button>
     </div>

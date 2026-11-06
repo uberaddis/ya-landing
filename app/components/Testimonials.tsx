@@ -1,8 +1,8 @@
 'use client'
 
-import Image from 'next/image'
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import Reveal from './Reveal'
 
 const testimonials = [
     {
@@ -10,21 +10,18 @@ const testimonials = [
         role: 'Rider',
         initials: 'ST',
         quote: 'I had an amazing experience with Ya Ride! The driver was friendly and the ride was smooth. Highly recommend!',
-        accent: 'from-emerald-400 via-green-500 to-teal-600',
     },
     {
         name: 'Yohannes Bekele',
         role: 'Frequent rider',
         initials: 'YB',
         quote: 'Booking a ride is quick and simple. I especially appreciate knowing that I can get where I need to go with confidence.',
-        accent: 'from-sky-400 via-cyan-500 to-blue-600',
     },
     {
         name: 'Hana Tesfaye',
         role: 'Ya community member',
         initials: 'HT',
         quote: 'The experience feels thoughtful from start to finish. It is a convenient way to move around the city on busy days.',
-        accent: 'from-violet-400 via-fuchsia-500 to-pink-600',
     },
 ] as const
 
@@ -99,7 +96,7 @@ export default function Testimonials() {
     return (
         <section
             aria-label="Customer testimonials"
-            className="relative isolate w-full select-none overflow-hidden bg-[#071b13] py-20 sm:py-24"
+            className="relative isolate w-full select-none overflow-hidden border-y-2 border-ink bg-paper py-20 text-ink sm:py-28"
             onBlur={() => setIsPaused(false)}
             onFocus={() => setIsPaused(true)}
             onMouseEnter={() => setIsPaused(true)}
@@ -110,108 +107,92 @@ export default function Testimonials() {
             }}
             tabIndex={0}
         >
-            <Image
-                alt=""
-                className="absolute inset-0 -z-20 h-full w-full object-cover opacity-25"
-                fill
-                sizes="100vw"
-                src="/images/ya_test_bg.jpg"
-            />
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_15%_20%,rgba(2,191,99,0.34),transparent_32%),linear-gradient(115deg,rgba(0,0,0,0.9),rgba(4,29,18,0.82))]" />
-
-            <div className="mx-auto flex w-full max-w-6xl flex-col px-5 sm:px-8 lg:px-10">
-                <div className="flex flex-col gap-4 text-white md:flex-row md:items-end md:justify-between">
-                    <div className="max-w-xl">
-                        <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-200 backdrop-blur">
-                            <Star aria-hidden="true" className="h-3.5 w-3.5 fill-current" />
-                            From the Ya community
-                        </span>
-                        <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <div className="wrap">
+                <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
+                    <div className="lg:col-span-8">
+                        <p className="marker text-ya-deep">From the Ya community</p>
+                        <h2 className="display mt-5 text-[clamp(2.25rem,6vw,4.75rem)]">
                             Made for the moments that keep your city moving.
                         </h2>
                     </div>
-                    <p className="max-w-sm text-sm leading-6 text-white/70 md:text-right">
+                    <p className="max-w-sm bg-paper/90 text-lg leading-7 text-muted lg:col-span-4 lg:justify-self-end">
                         Real stories from people choosing a simpler way to get around.
                     </p>
-                </div>
+                </Reveal>
 
                 <div
                     aria-roledescription="carousel"
-                    className={`relative mt-10 touch-pan-y overflow-hidden rounded-[2rem] border border-white/15 bg-white/10 p-2 shadow-[0_32px_100px_rgba(0,0,0,0.35)] backdrop-blur-sm sm:p-3 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                    className={`mt-12 touch-pan-y overflow-hidden border-2 border-ink ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
                     ref={carouselRef}
                     onPointerCancel={finishDrag}
                     onPointerDown={startDrag}
                     onPointerMove={moveDrag}
                     onPointerUp={finishDrag}
                 >
-                    <div className="overflow-hidden">
-                        <div
-                            className={`flex ${isDragging ? '' : 'transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]'}`}
-                            style={{ transform: `translateX(${-activeSlideOffset + dragOffset}px)` }}
-                        >
-                            {testimonials.map((testimonial) => (
-                                <article
-                                    className="flex-none px-1"
-                                    key={testimonial.name}
-                                    style={{ width: carouselWidth || undefined }}
-                                >
-                                    <div className="relative grid min-h-[380px] overflow-hidden rounded-[1.7rem] bg-white p-7 sm:min-h-[360px] sm:p-10 lg:grid-cols-[1.4fr_0.6fr] lg:gap-10 lg:p-14">
-                                        <div className="absolute right-0 top-0 h-48 w-48 -translate-y-1/2 translate-x-1/3 rounded-full bg-[var(--primary)]/15 blur-3xl" />
-                                        <div className="relative flex flex-col justify-between">
-                                            <Quote aria-hidden="true" className="h-11 w-11 text-[var(--primary)]" strokeWidth={1.5} />
-                                            <blockquote className="mt-8 max-w-2xl text-2xl font-medium leading-[1.38] tracking-tight text-slate-900 sm:text-3xl">
-                                                “{testimonial.quote}”
-                                            </blockquote>
-                                            <div className="mt-10 flex items-center gap-4">
-                                                <div className={`grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br ${testimonial.accent} text-sm font-bold text-white shadow-lg`}>
-                                                    {testimonial.initials}
-                                                </div>
-                                                <div>
-                                                    <p className="font-bold text-slate-950">{testimonial.name}</p>
-                                                    <p className="mt-0.5 text-sm font-medium text-[var(--primary)]">{testimonial.role}</p>
-                                                </div>
-                                            </div>
+                    <div
+                        className={`flex ${isDragging ? '' : 'transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]'}`}
+                        style={{ transform: `translateX(${-activeSlideOffset + dragOffset}px)` }}
+                    >
+                        {testimonials.map((testimonial) => (
+                            <article
+                                aria-label={`Testimonial from ${testimonial.name}`}
+                                className="grid flex-none bg-ink text-paper lg:grid-cols-[1.5fr_0.5fr]"
+                                key={testimonial.name}
+                                style={{ width: carouselWidth || undefined }}
+                            >
+                                <div className="flex min-h-[380px] flex-col justify-between p-7 sm:p-12">
+                                    <Quote aria-hidden="true" className="h-12 w-12 text-ya" strokeWidth={2} />
+                                    <blockquote className="display mt-8 max-w-3xl !leading-[1.12] !tracking-[-0.03em] text-[clamp(1.6rem,3.6vw,2.75rem)]">
+                                        “{testimonial.quote}”
+                                    </blockquote>
+                                    <div className="mt-10 flex items-center gap-4">
+                                        <div className="grid h-12 w-12 place-items-center bg-ya font-display text-base font-extrabold text-ink">
+                                            {testimonial.initials}
                                         </div>
-
-                                        <div className="relative mt-10 hidden overflow-hidden rounded-[1.5rem] bg-slate-950 p-8 text-white lg:flex lg:flex-col lg:justify-between">
-                                            <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${testimonial.accent}`} />
-                                            <p className="text-sm font-medium leading-6 text-white/70">
-                                                Every journey starts with a little more ease.
-                                            </p>
-                                            <div>
-                                                <div className="flex gap-1 text-emerald-300">
-                                                    {[0, 1, 2, 3, 4].map((star) => <Star aria-hidden="true" className="h-4 w-4 fill-current" key={star} />)}
-                                                </div>
-                                                <p className="mt-4 text-lg font-semibold">A ride that feels effortless.</p>
-                                            </div>
+                                        <div>
+                                            <p className="font-display text-lg font-bold">{testimonial.name}</p>
+                                            <p className="text-sm font-medium text-ya">{testimonial.role}</p>
                                         </div>
                                     </div>
-                                </article>
-                            ))}
-                        </div>
-                    </div>
+                                </div>
 
-                    <div className="absolute inset-x-0 bottom-5 flex items-center justify-between px-5 sm:bottom-7 sm:px-8">
-                        <div className="flex gap-2" role="tablist" aria-label="Select a testimonial">
-                            {testimonials.map((testimonial, index) => (
-                                <button
-                                    aria-label={`Show testimonial from ${testimonial.name}`}
-                                    aria-selected={currentIndex === index}
-                                    className={`h-2.5 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 ${currentIndex === index ? 'w-8 bg-[var(--primary)]' : 'w-2.5 bg-slate-300 hover:bg-slate-400'}`}
-                                    key={testimonial.name}
-                                    onClick={() => goTo(index)}
-                                    role="tab"
-                                    type="button"
-                                />
-                            ))}
-                        </div>
-                        <div className="flex gap-2">
-                            <CarouselButton direction="previous" onClick={() => goTo(currentIndex - 1)} />
-                            <CarouselButton direction="next" onClick={() => goTo(currentIndex + 1)} />
-                        </div>
+                                <div className="hidden flex-col justify-between bg-ya p-8 text-ink lg:flex">
+                                    <p className="text-sm font-semibold leading-6">
+                                        Every journey starts with a little more ease.
+                                    </p>
+                                    <div>
+                                        <div className="flex gap-1">
+                                            {[0, 1, 2, 3, 4].map((star) => <Star aria-hidden="true" className="h-4 w-4 fill-current" key={star} />)}
+                                        </div>
+                                        <p className="display mt-4 text-2xl !leading-[1.05]">A ride that feels effortless.</p>
+                                    </div>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="mt-6 flex items-center justify-between">
+                    <div className="flex gap-2" role="tablist" aria-label="Select a testimonial">
+                        {testimonials.map((testimonial, index) => (
+                            <button
+                                aria-label={`Show testimonial from ${testimonial.name}`}
+                                aria-selected={currentIndex === index}
+                                className={`h-3 border-2 border-ink transition-all ${currentIndex === index ? 'w-10 bg-ink' : 'w-3 bg-paper hover:bg-ya'}`}
+                                key={testimonial.name}
+                                onClick={() => goTo(index)}
+                                role="tab"
+                                type="button"
+                            />
+                        ))}
+                    </div>
+                    <div className="flex gap-2">
+                        <CarouselButton direction="previous" onClick={() => goTo(currentIndex - 1)} />
+                        <CarouselButton direction="next" onClick={() => goTo(currentIndex + 1)} />
                     </div>
                 </div>
             </div>
+
         </section>
     )
 }
@@ -223,7 +204,7 @@ function CarouselButton({ direction, onClick }: { direction: 'previous' | 'next'
     return (
         <button
             aria-label={`${isPrevious ? 'Previous' : 'Next'} testimonial`}
-            className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-900 shadow-md transition hover:-translate-y-0.5 hover:border-[var(--primary)] hover:text-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2"
+            className="grid h-12 w-12 place-items-center border-2 border-ink bg-paper text-ink transition-colors hover:bg-ya"
             onClick={onClick}
             type="button"
         >
